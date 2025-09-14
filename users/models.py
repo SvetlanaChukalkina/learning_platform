@@ -28,12 +28,30 @@ class User(AbstractUser):
 class Payment(models.Model):
     """Модель платежа"""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, verbose_name="Пользователь"
+    )
     date = models.DateField(verbose_name="Дата платежа")
-    payment_for_course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Плата за курс")
-    payment_for_lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Плата за урок")
+    payment_for_course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name="Плата за курс",
+    )
+    payment_for_lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name="Плата за урок",
+    )
     total_payment = models.PositiveIntegerField(verbose_name="Сумма платежа")
-    type = models.CharField (max_length=15, help_text="Способ оплаты: наличные или перевод", verbose_name="Способ оплаты")
+    type = models.CharField(
+        max_length=15,
+        help_text="Способ оплаты: наличные или перевод",
+        verbose_name="Способ оплаты",
+    )
 
     class Meta:
         verbose_name = "Платеж"
