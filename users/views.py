@@ -6,11 +6,14 @@ from rest_framework.generics import (CreateAPIView, DestroyAPIView,
 from rest_framework.viewsets import ModelViewSet
 
 from users.models import Payment, User
-from users.serializer import PaymentSerializer
+from users.serializer import PaymentSerializer, UserSerializer
 
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
+
+    def get_serializer_class(self):
+        return UserSerializer
 
 
 class PaymentCreateApiView(CreateAPIView):
